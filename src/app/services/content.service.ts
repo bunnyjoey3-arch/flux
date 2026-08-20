@@ -21,6 +21,7 @@ export class ContentService {
         'When a power-grid engineer discovers a signal riding the current itself, she has 48 hours to prove humanity isn\u2019t alone before the signal proves it first.',
       gradient: ['#7b5cfa', '#17e9c0'],
       language: 'English',
+      image: 'https://picsum.photos/seed/aftercurrent/400/600',
       featured: true,
       trending: true,
     },
@@ -38,6 +39,7 @@ export class ContentService {
         'Three generations of a shipbuilding family guard a secret buried under their shipyard \u2014 and the tide is finally going out.',
       gradient: ['#ff3d7f', '#7b5cfa'],
       language: 'English',
+      image: 'https://picsum.photos/seed/glassmeridian/400/600',
       trending: true,
     },
     {
@@ -54,6 +56,7 @@ export class ContentService {
         'Exiled from a floating empire, a masterless swordsman collects fallen stars to forge the one blade that can bring his sky home.',
       gradient: ['#17e9c0', '#0ea5e9'],
       language: 'Japanese',
+      image: 'https://picsum.photos/seed/ronin/400/600',
       trending: true,
       featured: true,
     },
@@ -85,6 +88,7 @@ export class ContentService {
         'A late-night radio host starts receiving calls from listeners who haven\u2019t been born yet \u2014 warning her about tonight.',
       gradient: ['#0ea5e9', '#7b5cfa'],
       language: 'English',
+      image: 'https://picsum.photos/seed/longstatic/400/600',
       newRelease: true,
     },
     {
@@ -100,6 +104,7 @@ export class ContentService {
         'Two wildfire lookout rangers spend one isolated season learning that the hardest thing to contain is how they feel.',
       gradient: ['#ff3d7f', '#f59e0b'],
       language: 'English',
+      image: 'https://picsum.photos/seed/kindling/400/600',
     },
     {
       id: 7,
@@ -115,6 +120,7 @@ export class ContentService {
         'A rookie detective and a rogue AI trace a string of impossible heists through a city that never stops rewriting its own map.',
       gradient: ['#7b5cfa', '#0ea5e9'],
       language: 'English',
+      image: 'https://picsum.photos/seed/circuitcity/400/600',
       newRelease: true,
       trending: true,
     },
@@ -174,6 +180,7 @@ export class ContentService {
         'A decommissioned power-suit test pilot is pulled back in when the grid she once protected is turned into a weapon.',
       gradient: ['#ff3d7f', '#7b5cfa'],
       language: 'English',
+      image: 'https://picsum.photos/seed/voltage/400/600',
       newRelease: true,
     },
     {
@@ -190,6 +197,7 @@ export class ContentService {
         'The first commercial space station is also the first place a murder has ever happened with nowhere at all to run.',
       gradient: ['#0ea5e9', '#7b5cfa'],
       language: 'English',
+      image: 'https://picsum.photos/seed/loworbit/400/600',
       trending: true,
     },
     {
@@ -237,6 +245,7 @@ export class ContentService {
         'A tide-locked coastal town loses power for one night a year \u2014 and every year, somebody new goes missing.',
       gradient: ['#7b5cfa', '#17e9c0'],
       language: 'English',
+      image: 'https://picsum.photos/seed/halfmoonbay/400/600',
     },
     {
       id: 16,
@@ -296,6 +305,7 @@ export class ContentService {
         'A desert-scavenging engineer and a shipwrecked navigation drone cross a dead ocean floor to find the last working port.',
       gradient: ['#f59e0b', '#17e9c0'],
       language: 'English',
+      image: 'https://picsum.photos/seed/saltandcircuit/400/600',
     },
     {
       id: 20,
@@ -387,6 +397,7 @@ export class ContentService {
         'A map that redraws itself every full moon leads a disgraced explorer toward a continent that isn\u2019t supposed to exist.',
       gradient: ['#ff3d7f', '#17e9c0'],
       language: 'English',
+      image: 'https://picsum.photos/seed/cartographersghost/400/600',
     },
     {
       id: 26,
@@ -475,6 +486,7 @@ export class ContentService {
         'The only 24-hour diner at the edge of the solar system is having the worst \u2014 and best \u2014 night shift of its existence.',
       gradient: ['#f59e0b', '#7b5cfa'],
       language: 'English',
+      image: 'https://picsum.photos/seed/redshiftdiner/400/600',
       newRelease: true,
     },
     {
@@ -597,6 +609,7 @@ export class ContentService {
         'A retired smuggler is pulled back for one last run when the cargo turns out to be the daughter she never got to raise.',
       gradient: ['#7b5cfa', '#0ea5e9'],
       language: 'English',
+      image: 'https://picsum.photos/seed/obsidiantide/400/600',
       newRelease: true,
     },
     {
