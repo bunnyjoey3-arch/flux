@@ -1,4 +1,20 @@
-# Dependencies
+node_modules/
+dist/
+out/
+build/
+.angular/cache/
+.vscode/
+.idea/
+.env
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.DS_Store
+Thumbs.db
+*.local
+/.sass-cache/# Dependencies
 /node_modules
 
 # Build output

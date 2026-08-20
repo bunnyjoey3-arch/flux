@@ -1,4 +1,4 @@
-<flux-hero [item]="featured" (moreInfo)="openDetails($event)" (play)="openDetails($event)"></flux-hero>
+<flux-hero *ngIf="featured" [item]="featured" (moreInfo)="openDetails($event)" (play)="openDetails($event)"></flux-hero>
 
 <div class="home__rows">
   <flux-content-row
@@ -44,6 +44,4 @@
   ></flux-content-row>
 </div>
 
-@if (activeItem) {
-  <flux-content-modal [item]="activeItem" (close)="closeDetails()" (openItem)="openDetails($event)"></flux-content-modal>
-}
+<flux-content-modal *ngIf="activeItem" [item]="activeItem" (close)="closeDetails()" (openItem)="openDetails($event)"></flux-content-modal>
