@@ -1,0 +1,38 @@
+<button
+  type="button"
+  class="card"
+  [style.--c1]="item.gradient[0]"
+  [style.--c2]="item.gradient[1]"
+  (click)="onActivate()"
+>
+  <span class="card__art">
+    <img
+      class="card__img"
+      [src]="item.image || ('https://picsum.photos/seed/' + item.id + '/400/600')"
+      [attr.alt]="item.title"
+      loading="lazy"
+    />
+    <span class="card__scan"></span>
+  </span>
+
+  <span class="card__badges">
+    @if (item.newRelease) {
+      <span class="card__tag card__tag--new">New</span>
+    }
+    @if (item.trending) {
+      <span class="card__tag card__tag--trending">Trending</span>
+    }
+  </span>
+
+  <span class="card__overlay">
+    <span class="card__play" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+    </span>
+    <span class="card__title">{{ item.title }}</span>
+    <span class="card__meta">
+      <span class="card__match">{{ item.matchScore }}% match</span>
+      <span class="card__year">{{ item.year }}</span>
+    </span>
+    <span class="card__genres">{{ item.genres.join(' \u2022 ') }}</span>
+  </span>
+</button>

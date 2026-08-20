@@ -1,0 +1,143 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 4, 8, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4vh 16px;
+  overflow-y: auto;
+}
+
+.modal {
+  position: relative;
+  width: min(760px, 100%);
+  background: var(--flux-surface);
+  border: 1px solid var(--flux-border);
+  border-radius: var(--flux-radius-lg);
+  overflow: hidden;
+  animation: modalIn 0.22s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(8, 9, 14, 0.55);
+  color: var(--flux-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.modal__art {
+  position: relative;
+  height: 260px;
+  background: linear-gradient(155deg, var(--c1), var(--c2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.modal__art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, var(--flux-surface) 0%, transparent 55%);
+}
+
+.modal__mark {
+  font-family: var(--flux-font-display);
+  font-weight: 700;
+  font-size: 8rem;
+  color: rgba(8, 9, 14, 0.28);
+}
+
+.modal__body {
+  padding: 8px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal__title {
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.modal__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.88rem;
+  color: var(--flux-text-muted);
+}
+
+.modal__match {
+  color: var(--flux-teal);
+  font-weight: 700;
+}
+
+.modal__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal__synopsis {
+  color: var(--flux-text);
+  line-height: 1.6;
+  font-size: 1rem;
+  max-width: 62ch;
+}
+
+.modal__genres,
+.modal__similar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal__genre-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.modal__similar-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+@media (max-width: 640px) {
+  .modal__body {
+    padding: 8px 18px 24px;
+  }
+  .modal__art {
+    height: 180px;
+  }
+  .modal__mark {
+    font-size: 5rem;
+  }
+}

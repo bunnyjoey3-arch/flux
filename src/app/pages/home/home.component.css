@@ -1,0 +1,6 @@
+.home__rows {
+  padding-top: 24px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+}
