@@ -63,3 +63,9 @@ Output is written to `dist/flux`.
 real backend, replace its methods with HTTP calls (Angular's `HttpClient`)
 against your API, keeping the same `FluxContent` shape so the rest of the
 app (cards, rows, modal, browse/search) keeps working unchanged.
+
+## Using a custom logo
+
+Drop your preferred logo image at `src/assets/logo.png`. The app will use
+that image in the header and footer. If you provided the logo through the
+editor attachments, save it to that path (overwrite any existing file).

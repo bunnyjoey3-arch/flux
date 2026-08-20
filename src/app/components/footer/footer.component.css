@@ -17,14 +17,11 @@
   max-width: 280px;
 }
 
-.footer__logo {
-  font-family: var(--flux-font-display);
-  font-weight: 700;
-  font-size: 1.4rem;
-  background: var(--flux-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.footer__logo-img {
+  width: 140px;
+  height: auto;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .footer__tagline {

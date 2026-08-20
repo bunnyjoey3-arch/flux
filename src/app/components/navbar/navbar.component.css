@@ -36,6 +36,21 @@
   flex-shrink: 0;
 }
 
+.nav__logo-img {
+  width: 110px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
 .nav__logo-mark {
   position: relative;
   width: 20px;
