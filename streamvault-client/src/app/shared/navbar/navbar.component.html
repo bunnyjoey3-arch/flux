@@ -1,0 +1,31 @@
+<nav class="navbar">
+
+  <a routerLink="/" class="brand">StreamVault</a>
+
+  <div class="nav-links">
+    <a routerLink="/movies">Movies</a>
+    <a routerLink="/watchlist" *ngIf="auth.isLoggedIn">My Watchlist</a>
+    <a routerLink="/admin" *ngIf="auth.isAdmin">Admin</a>
+  </div>
+
+  <div class="nav-search">
+    <input
+      type="text"
+      placeholder="Search titles..."
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="submitSearch()" />
+  </div>
+
+  <div class="nav-actions">
+    <ng-container *ngIf="!auth.isLoggedIn">
+      <a routerLink="/login" class="btn-ghost">Log in</a>
+      <a routerLink="/register" class="btn-solid">Sign up</a>
+    </ng-container>
+
+    <ng-container *ngIf="auth.isLoggedIn">
+      <span class="user-name">{{ auth.currentUser()?.displayName }}</span>
+      <button class="btn-ghost" (click)="logout()">Log out</button>
+    </ng-container>
+  </div>
+
+</nav>

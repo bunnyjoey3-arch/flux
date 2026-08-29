@@ -1,0 +1,82 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 32px;
+  background: #0b0b0f;
+  color: #f4f4f5;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 20px;
+  color: #e11d48;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links a {
+  color: #d4d4d8;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+.nav-search {
+  flex: 1;
+  max-width: 320px;
+}
+
+.nav-search input {
+  width: 100%;
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: 1px solid #3f3f46;
+  background: #18181b;
+  color: white;
+  font-size: 13px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.user-name {
+  font-size: 13px;
+  color: #a1a1aa;
+}
+
+.btn-ghost {
+  background: none;
+  border: 1px solid #3f3f46;
+  color: #f4f4f5;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.btn-solid {
+  background: #e11d48;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}

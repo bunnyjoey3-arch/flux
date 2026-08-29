@@ -1,0 +1,32 @@
+<div class="hero" *ngIf="featuredBanner" [style.backgroundImage]="'url(' + (featuredBanner.posterUrl || '') + ')'">
+  <div class="hero-overlay">
+    <h1>{{ featuredBanner.title }}</h1>
+    <p>{{ featuredBanner.releaseYear }} · {{ featuredBanner.categories.join(', ') }}</p>
+    <a [routerLink]="['/movies', featuredBanner.id]" class="btn-play">▶ Play</a>
+  </div>
+</div>
+
+<section class="row" *ngIf="trending.length">
+  <h2>Trending now</h2>
+  <div class="row-scroll">
+    <app-movie-card *ngFor="let movie of trending" [movie]="movie"></app-movie-card>
+  </div>
+</section>
+
+<section class="row" *ngIf="popular.length">
+  <h2>Popular</h2>
+  <div class="row-scroll">
+    <app-movie-card *ngFor="let movie of popular" [movie]="movie"></app-movie-card>
+  </div>
+</section>
+
+<section class="row" *ngIf="latest.length">
+  <h2>Latest releases</h2>
+  <div class="row-scroll">
+    <app-movie-card *ngFor="let movie of latest" [movie]="movie"></app-movie-card>
+  </div>
+</section>
+
+<p class="empty-state" *ngIf="!trending.length && !popular.length && !latest.length">
+  No movies yet — add some from the Admin panel to get started.
+</p>

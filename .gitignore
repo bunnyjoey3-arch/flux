@@ -1,35 +1,14 @@
+# .NET
+bin/
+obj/
+*.user
+
+# Angular
 node_modules/
 dist/
-out/
-build/
-.angular/cache/
+.angular/
+
+# Editors
+.vs/
 .vscode/
 .idea/
-.env
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-.DS_Store
-Thumbs.db
-*.local
-/.sass-cache/# Dependencies
-/node_modules
-
-# Build output
-/dist
-/out-tsc
-/.angular
-
-# IDE
-.vscode/
-.idea/
-*.iml
-
-# System
-.DS_Store
-Thumbs.db
-
-# Logs
-npm-debug.log*

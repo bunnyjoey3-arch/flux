@@ -1,0 +1,38 @@
+<div class="list-shell">
+
+  <div class="filters">
+    <input
+      type="text"
+      placeholder="Search by title..."
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="refresh()" />
+
+    <select [(ngModel)]="selectedCategoryId" (change)="refresh()">
+      <option [ngValue]="null">All genres</option>
+      <option *ngFor="let c of categories" [ngValue]="c.id">{{ c.name }}</option>
+    </select>
+
+    <input
+      type="number"
+      placeholder="Year"
+      [(ngModel)]="selectedYear"
+      (change)="refresh()" />
+
+    <select [(ngModel)]="sort" (change)="refresh()">
+      <option value="latest">Latest</option>
+      <option value="trending">Trending</option>
+      <option value="popular">Popular</option>
+    </select>
+
+    <button (click)="refresh()">Search</button>
+  </div>
+
+  <div class="grid" *ngIf="movies.length; else noResults">
+    <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+  </div>
+
+  <ng-template #noResults>
+    <p class="empty">No movies match your filters.</p>
+  </ng-template>
+
+</div>

@@ -1,0 +1,24 @@
+<div class="auth-shell">
+  <div class="auth-card">
+    <h1>Create your account</h1>
+
+    <label>Display name</label>
+    <input type="text" [(ngModel)]="displayName" placeholder="Jane Doe" />
+
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" placeholder="you@example.com" />
+
+    <label>Password</label>
+    <input type="password" [(ngModel)]="password" placeholder="At least 8 characters" (keyup.enter)="submit()" />
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <button class="btn-solid" (click)="submit()" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Creating account...' : 'Sign up' }}
+    </button>
+
+    <p class="switch">
+      Already have an account? <a routerLink="/login">Log in</a>
+    </p>
+  </div>
+</div>

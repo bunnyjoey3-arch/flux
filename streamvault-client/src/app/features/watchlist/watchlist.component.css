@@ -1,0 +1,75 @@
+.watchlist-shell {
+  padding: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.watchlist-shell h1 {
+  color: #f4f4f5;
+  font-size: 22px;
+  margin: 0 0 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 18px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.poster {
+  aspect-ratio: 2 / 3;
+  background-color: #27272a;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  display: block;
+}
+
+.item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 2px;
+}
+
+.item-info a {
+  color: #f4f4f5;
+  font-size: 13px;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #71717a;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  color: #f87171;
+}
+
+.empty-message {
+  color: #a1a1aa;
+  margin-bottom: 16px;
+}
+
+.btn-solid {
+  display: inline-block;
+  background: #e11d48;
+  color: white;
+  padding: 9px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}

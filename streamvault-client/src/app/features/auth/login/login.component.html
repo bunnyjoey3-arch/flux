@@ -1,0 +1,21 @@
+<div class="auth-shell">
+  <div class="auth-card">
+    <h1>Log in</h1>
+
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" placeholder="you@example.com" />
+
+    <label>Password</label>
+    <input type="password" [(ngModel)]="password" placeholder="••••••••" (keyup.enter)="submit()" />
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <button class="btn-solid" (click)="submit()" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Logging in...' : 'Log in' }}
+    </button>
+
+    <p class="switch">
+      New here? <a routerLink="/register">Create an account</a>
+    </p>
+  </div>
+</div>

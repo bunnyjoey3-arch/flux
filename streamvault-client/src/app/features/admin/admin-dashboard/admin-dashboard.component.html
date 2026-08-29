@@ -1,0 +1,130 @@
+<div class="admin-shell">
+
+  <h1>Admin dashboard</h1>
+
+  <div class="tabs">
+    <button [class.active]="activeTab === 'movies'" (click)="setTab('movies')">Movies</button>
+    <button [class.active]="activeTab === 'categories'" (click)="setTab('categories')">Categories</button>
+    <button [class.active]="activeTab === 'users'" (click)="setTab('users')">Users</button>
+  </div>
+
+  <!-- Movies tab -->
+  <div *ngIf="activeTab === 'movies'">
+    <div class="tab-header">
+      <button class="btn-solid" (click)="openNewMovie()">+ Add movie</button>
+    </div>
+
+    <table class="admin-table">
+      <thead>
+        <tr><th>Title</th><th>Year</th><th>Rating</th><th>Genres</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of movies">
+          <td>{{ movie.title }}</td>
+          <td>{{ movie.releaseYear }}</td>
+          <td>{{ movie.averageRating || '—' }}</td>
+          <td>{{ movie.categories.join(', ') || '—' }}</td>
+          <td class="actions">
+            <button (click)="openEditMovie(movie)">Edit</button>
+            <button class="danger" (click)="deleteMovie(movie)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Categories tab -->
+  <div *ngIf="activeTab === 'categories'">
+    <div class="category-form">
+      <input type="text" placeholder="New genre name" [(ngModel)]="newCategoryName" (keyup.enter)="addCategory()" />
+      <button class="btn-solid" (click)="addCategory()">Add</button>
+    </div>
+
+    <ul class="category-list">
+      <li *ngFor="let category of categories">
+        {{ category.name }}
+        <button class="danger" (click)="removeCategory(category)">Remove</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Users tab -->
+  <div *ngIf="activeTab === 'users'">
+    <table class="admin-table">
+      <thead>
+        <tr><th>Name</th><th>Email</th><th>Roles</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.displayName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.roles.join(', ') }}</td>
+          <td class="actions">
+            <button *ngIf="!user.roles.includes('Admin')" (click)="promote(user)">Make admin</button>
+            <button class="danger" (click)="deleteUser(user)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Movie editor modal -->
+<div class="overlay" *ngIf="isEditorOpen" (click)="closeEditor()">
+  <div class="editor-panel" (click)="$event.stopPropagation()">
+
+    <h2>{{ editingMovieId ? 'Edit movie' : 'Add movie' }}</h2>
+
+    <label>Title</label>
+    <input type="text" [(ngModel)]="draft.title" />
+
+    <label>Description</label>
+    <textarea rows="3" [(ngModel)]="draft.description"></textarea>
+
+    <div class="field-row">
+      <div>
+        <label>Release year</label>
+        <input type="number" [(ngModel)]="draft.releaseYear" />
+      </div>
+      <div>
+        <label>Duration (minutes)</label>
+        <input type="number" [(ngModel)]="draft.duration" />
+      </div>
+    </div>
+
+    <label>Poster URL</label>
+    <input type="text" [(ngModel)]="draft.posterUrl" placeholder="https://..." />
+
+    <label>Banner URL</label>
+    <input type="text" [(ngModel)]="draft.bannerUrl" placeholder="https://..." />
+
+    <label>Video URL</label>
+    <input type="text" [(ngModel)]="draft.videoUrl" placeholder="https://..." />
+
+    <label>Genres</label>
+    <div class="chip-row">
+      <button
+        type="button"
+        *ngFor="let category of categories"
+        class="chip"
+        [class.selected]="draft.categoryIds.includes(category.id)"
+        (click)="toggleCategory(category.id)">
+        {{ category.name }}
+      </button>
+    </div>
+
+    <label class="checkbox-label">
+      <input type="checkbox" [(ngModel)]="draft.isFeatured" />
+      Feature on home page
+    </label>
+
+    <p class="error" *ngIf="formError">{{ formError }}</p>
+
+    <div class="editor-actions">
+      <button class="btn-ghost" (click)="closeEditor()">Cancel</button>
+      <button class="btn-solid" (click)="saveMovie()">Save</button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,47 @@
+.list-shell {
+  padding: 24px 32px 48px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.filters input,
+.filters select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #3f3f46;
+  background: #18181b;
+  color: white;
+  font-size: 13px;
+}
+
+.filters input[type="number"] {
+  width: 90px;
+}
+
+.filters button {
+  background: #e11d48;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 18px;
+}
+
+.empty {
+  color: #a1a1aa;
+  text-align: center;
+  padding: 60px 0;
+}

@@ -1,0 +1,12 @@
+<a [routerLink]="['/movies', movie.id]" class="card">
+
+  <div class="poster" [style.backgroundImage]="'url(' + (movie.posterUrl || '') + ')'">
+    <span class="rating" *ngIf="movie.averageRating > 0">★ {{ movie.averageRating }}</span>
+  </div>
+
+  <div class="info">
+    <h3>{{ movie.title }}</h3>
+    <p class="meta">{{ movie.releaseYear }} · {{ movie.categories.join(', ') || 'Uncategorized' }}</p>
+  </div>
+
+</a>

@@ -1,0 +1,71 @@
+<div class="detail-shell" *ngIf="movie">
+
+  <div class="banner" [style.backgroundImage]="'url(' + (movie.bannerUrl || movie.posterUrl || '') + ')'">
+    <div class="banner-overlay">
+      <h1>{{ movie.title }}</h1>
+      <p class="meta">
+        {{ movie.releaseYear }} · {{ movie.duration }} min
+        <span *ngIf="movie.averageRating > 0"> · ★ {{ movie.averageRating }} ({{ movie.reviewCount }})</span>
+      </p>
+      <p class="categories">{{ movie.categories.join(', ') }}</p>
+
+      <div class="actions">
+        <button class="btn-play" (click)="play()" *ngIf="!isPlaying">▶ Play</button>
+        <button
+          class="btn-watchlist"
+          (click)="toggleWatchlist()"
+          *ngIf="auth.isLoggedIn">
+          {{ isInWatchlist ? '✓ In watchlist' : '+ Add to watchlist' }}
+        </button>
+      </div>
+
+      <p class="watchlist-msg" *ngIf="watchlistMessage">{{ watchlistMessage }}</p>
+    </div>
+  </div>
+
+  <div class="player-wrap" *ngIf="isPlaying">
+    <video [src]="movie.videoUrl" controls autoplay style="width: 100%; max-height: 500px; background: black;"></video>
+  </div>
+
+  <p class="description">{{ movie.description }}</p>
+
+  <section class="reviews-section">
+    <h2>Ratings & reviews</h2>
+
+    <div class="review-form" *ngIf="auth.isLoggedIn">
+      <label>Your rating</label>
+      <select [(ngModel)]="newStars">
+        <option *ngFor="let n of [1,2,3,4,5]" [ngValue]="n">{{ n }} star{{ n > 1 ? 's' : '' }}</option>
+      </select>
+
+      <textarea
+        rows="2"
+        placeholder="Share your thoughts (optional)"
+        [(ngModel)]="newComment"></textarea>
+
+      <p class="error" *ngIf="reviewError">{{ reviewError }}</p>
+
+      <button (click)="submitReview()">Post review</button>
+    </div>
+
+    <p class="login-prompt" *ngIf="!auth.isLoggedIn">
+      Log in to leave a rating or review.
+    </p>
+
+    <div class="review-list">
+      <div class="review-card" *ngFor="let review of reviews">
+        <div class="review-header">
+          <strong>{{ review.displayName }}</strong>
+          <span class="stars">
+            <span *ngFor="let s of starsArray(review.stars)">★</span>
+          </span>
+          <button class="delete-review" *ngIf="canDelete(review)" (click)="deleteReview(review)">Remove</button>
+        </div>
+        <p *ngIf="review.comment">{{ review.comment }}</p>
+      </div>
+
+      <p class="empty" *ngIf="!reviews.length">No reviews yet — be the first.</p>
+    </div>
+  </section>
+
+</div>

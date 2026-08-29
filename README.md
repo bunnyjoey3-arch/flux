@@ -1,71 +1,112 @@
-# Flux
+# StreamVault
 
-Flux is a streaming-platform front end built with **Angular 17** (standalone
-components, the new `@if` / `@for` control-flow syntax, and lazy-loaded
-routes) — a home for movies, series, anime and documentaries in one catalog.
+A streaming-platform demo app — movies, search, watchlist, star ratings and
+reviews, and an admin panel — built with ASP.NET Core Identity/JWT on the
+backend and Angular standalone components on the frontend.
 
-> All titles, artwork and copy in this project are original placeholders
-> created for this demo. Flux does not stream real content.
+This is a learning/portfolio project, not a production streaming service:
+there's no real video transcoding or DRM, "videos" are just URLs the
+`<video>` tag plays directly (point them at your own MP4s or a public test
+stream while trying it out).
 
-## Features
-
-- **Hero banner** with an animated "flux waveform" signature graphic
-- **Horizontally scrolling shelves** — Trending, New Releases, Anime,
-  Movies, Series, Documentaries
-- **Browse page** with category tabs (`Movie` / `Series` / `Anime` /
-  `Documentary` / `All`) and live search
-- **Detail modal** with synopsis, meta info and a "More like this" row
-- Fully responsive, keyboard-accessible, and respects
-  `prefers-reduced-motion`
-- Dark, high-contrast visual identity: near-black surfaces with a
-  violet → teal gradient signature and Space Grotesk / Inter type pairing
-
-## Project structure
+## Project layout
 
 ```
-src/app/
-├── components/
-│   ├── navbar/            top navigation, search, mobile menu
-│   ├── hero/               featured-title banner
-│   ├── content-row/        horizontal scrolling shelf
-│   ├── content-card/       poster card used in rows, grid & modal
-│   ├── content-modal/      title detail overlay
-│   └── footer/              site footer
-├── pages/
-│   ├── home/               "/" — hero + shelves
-│   └── browse/              "/browse/:category" — filterable grid
-├── models/content.model.ts  shared TypeScript interfaces
-└── services/content.service.ts  in-memory catalog + query helpers
+StreamVault/
+├── StreamVault.Api/         ASP.NET Core Web API (Identity, JWT, EF Core)
+└── streamvault-client/      Angular frontend
 ```
 
-## Getting started
+## Running the API
 
-Requires Node.js 18+ and npm.
+Requirements: .NET 8 SDK, SQL Server (LocalDB, Express, or full).
 
 ```bash
+cd StreamVault.Api
+dotnet restore
+
+# 1. Update the connection string in appsettings.json if you're not
+#    using the default local SQL Server instance.
+# 2. Replace the "Jwt:Key" value in appsettings.json with your own
+#    long random secret before running this anywhere but your own machine.
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+dotnet run
+```
+
+The API prints the URL it's listening on (default `http://localhost:5090`).
+Open `/swagger` there to try endpoints directly — click "Authorize" and
+paste a JWT (from `/api/auth/login`) to call protected routes.
+
+On first run, the app seeds two roles (`Admin`, `Member`) and one default
+admin account:
+
+- **Email:** `admin@streamvault.local`
+- **Password:** `ChangeMe123!`
+
+Log in with that account, then either use it directly or promote your own
+account to Admin from the admin panel. Change or remove the seeded password
+before deploying this anywhere public.
+
+### Main endpoints
+
+| Area       | Route                                    |
+|------------|-------------------------------------------|
+| Auth       | `POST /api/auth/register`, `/login`, `GET /api/auth/profile` |
+| Movies     | `GET /api/movies` (search/filter/sort), `GET /api/movies/{id}` |
+| Categories | `GET /api/categories`, admin-only `POST`/`DELETE` |
+| Watchlist  | `GET/POST/DELETE /api/watchlist` (auth required) |
+| Reviews    | `GET/POST /api/movies/{movieId}/reviews`, `DELETE .../{reviewId}` |
+| Admin      | `POST/PUT/DELETE /api/admin/movies`, `/api/admin/users`, `/api/admin/reviews` |
+
+## Running the frontend
+
+Requirements: Node.js 18+, Angular CLI (`npm install -g @angular/cli`).
+
+```bash
+cd streamvault-client
 npm install
-npm start
+ng serve
 ```
 
-Then open `http://localhost:4200`.
+Open `http://localhost:4200`. If your API runs on a different port, update
+`apiUrl` in `src/environments/environment.ts`.
 
-To build for production:
+## What's implemented
 
-```bash
-npm run build
-```
+- **Auth** — register, login, JWT stored client-side, route guards for
+  logged-in and admin-only pages.
+- **Movies & search** — home page with trending/popular/latest rows, a
+  searchable/filterable movie list, and a detail page.
+- **Watchlist** — add/remove from any movie page, dedicated watchlist page.
+- **Reviews & ratings** — 1–5 star reviews with comments; users can edit
+  their own review by resubmitting; owners and admins can delete.
+- **Admin panel** — movie CRUD (with genre tagging), category management,
+  user list with promote-to-admin and delete.
+- **Video player** — a native HTML5 `<video>` player with the browser's
+  built-in controls (play/pause/seek/volume/fullscreen/subtitles-if-provided).
 
-Output is written to `dist/flux`.
+## What's intentionally left out
 
-## Swapping in real data
+A few things from a full production streaming platform are out of scope for
+a learning project like this, noted here rather than silently skipped:
 
-`ContentService` currently serves a static, in-memory catalog. To connect a
-real backend, replace its methods with HTTP calls (Angular's `HttpClient`)
-against your API, keeping the same `FluxContent` shape so the rest of the
-app (cards, rows, modal, browse/search) keeps working unchanged.
+- **Series/episodes UI** — the API supports creating series, but there's no
+  Angular screen for browsing seasons/episodes yet.
+- **Continue watching** — the `ContinueWatchingEntry` table exists, but
+  nothing writes playback position from the player yet.
+- **Refresh tokens** — the JWT simply expires after 2 hours; there's no
+  silent refresh flow.
+- **Real video delivery** — no transcoding, adaptive bitrate, or CDN; the
+  player just points at whatever URL you give it.
 
-## Using a custom logo
+## Making this genuinely your own
 
-Drop your preferred logo image at `src/assets/logo.png`. The app will use
-that image in the header and footer. If you provided the logo through the
-editor attachments, save it to that path (overwrite any existing file).
+- Swap the palette (currently near-black with a red accent) for your own.
+- Build out the series/episodes screens using the existing API endpoints.
+- Add a "continue watching" row on the home page using the existing table.
+- Add integration tests for the controllers (xUnit + `WebApplicationFactory`).
+- Deploy the API to Azure App Service/Render and the Angular build to
+  Netlify/Vercel, so you have a live link to share instead of a local demo.
